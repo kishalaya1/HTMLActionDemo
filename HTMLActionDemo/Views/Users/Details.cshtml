@@ -1,0 +1,14 @@
+@model HTMLActionDemo.Models.User
+@{ ViewData["Title"] = "User Details"; }
+<h1>User Details <small class="text-muted fs-6">(HTTP GET)</small></h1>
+<dl class="row">
+    <dt class="col-sm-2">Id</dt><dd class="col-sm-10">@Model.Id</dd>
+    <dt class="col-sm-2">Name</dt><dd class="col-sm-10">@Model.FirstName @Model.LastName</dd>
+    <dt class="col-sm-2">Email</dt><dd class="col-sm-10">@Model.Email</dd>
+    <dt class="col-sm-2">Phone</dt><dd class="col-sm-10">@Model.Phone</dd>
+    <dt class="col-sm-2">Date of birth</dt><dd class="col-sm-10">@Model.DateOfBirth.ToShortDateString()</dd>
+    <dt class="col-sm-2">City</dt><dd class="col-sm-10">@Model.City</dd>
+    <dt class="col-sm-2">Active</dt><dd class="col-sm-10">@Model.IsActive</dd>
+</dl>
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back</a>

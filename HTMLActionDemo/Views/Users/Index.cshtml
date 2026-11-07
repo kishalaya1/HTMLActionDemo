@@ -1,0 +1,46 @@
+@model List<HTMLActionDemo.Models.User>
+@{ ViewData["Title"] = "Users"; }
+<h1>Users</h1>
+@Html.AntiForgeryToken()
+<p>
+    <a asp-action="Create" class="btn btn-success">Create (GET form, POST submit)</a>
+    <button class="btn btn-outline-info" onclick="verb('HEAD')">HEAD /Users/Exists/1</button>
+    <button class="btn btn-outline-info" onclick="verb('OPTIONS')">OPTIONS /Users/Exists/1</button>
+</p>
+<pre id="out" class="bg-light p-2"></pre>
+<table class="table">
+    <thead><tr><th>Id</th><th>Name</th><th>Email</th><th>Phone</th><th>DOB</th><th>City</th><th>Active</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.Id</td><td>@u.FirstName @u.LastName</td><td>@u.Email</td><td>@u.Phone</td>
+            <td>@u.DateOfBirth.ToShortDateString()</td><td>@u.City</td><td>@u.IsActive</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@u.Id" class="btn btn-sm btn-info">Details (GET)</a>
+                <a asp-action="Edit" asp-route-id="@u.Id" class="btn btn-sm btn-primary">Edit (GET/PUT)</a>
+                <button class="btn btn-sm btn-warning" onclick="toggle(@u.Id, @((!u.IsActive).ToString().ToLower()))">Toggle active (PATCH)</button>
+                <button class="btn btn-sm btn-danger" onclick="del(@u.Id)">Delete (DELETE)</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@section Scripts {
+<script>
+    const token = () => document.querySelector('[name=__RequestVerificationToken]').value;
+    async function toggle(id, active) {
+        const r = await fetch(`/Users/Status/${id}?active=${active}`, { method: 'PATCH', headers: { 'RequestVerificationToken': token() } });
+        if (r.ok) location.reload(); else alert('PATCH failed: ' + r.status);
+    }
+    async function del(id) {
+        if (!confirm('Delete user ' + id + '?')) return;
+        const r = await fetch(`/Users/Delete/${id}`, { method: 'DELETE', headers: { 'RequestVerificationToken': token() } });
+        if (r.ok) location.reload(); else alert('DELETE failed: ' + r.status);
+    }
+    async function verb(m) {
+        const r = await fetch('/Users/Exists/1', { method: m });
+        document.getElementById('out').textContent = m + ' -> ' + r.status + ' ' + r.statusText + '\nAllow: ' + (r.headers.get('Allow') ?? '(none)');
+    }
+</script>
+}

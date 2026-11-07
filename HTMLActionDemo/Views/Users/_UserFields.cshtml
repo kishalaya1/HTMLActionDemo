@@ -1,0 +1,11 @@
+@model HTMLActionDemo.Models.User
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+    <div class="col-md-6 mb-3"><label asp-for="FirstName" class="form-label"></label><input asp-for="FirstName" class="form-control" /><span asp-validation-for="FirstName" class="text-danger"></span></div>
+    <div class="col-md-6 mb-3"><label asp-for="LastName" class="form-label"></label><input asp-for="LastName" class="form-control" /><span asp-validation-for="LastName" class="text-danger"></span></div>
+    <div class="col-md-6 mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+    <div class="col-md-6 mb-3"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" class="form-control" /><span asp-validation-for="Phone" class="text-danger"></span></div>
+    <div class="col-md-6 mb-3"><label asp-for="DateOfBirth" class="form-label"></label><input asp-for="DateOfBirth" class="form-control" /><span asp-validation-for="DateOfBirth" class="text-danger"></span></div>
+    <div class="col-md-6 mb-3"><label asp-for="City" class="form-label"></label><input asp-for="City" class="form-control" /><span asp-validation-for="City" class="text-danger"></span></div>
+    <div class="col-12 mb-3 form-check ms-2"><input asp-for="IsActive" class="form-check-input" /><label asp-for="IsActive" class="form-check-label"></label></div>
+</div>

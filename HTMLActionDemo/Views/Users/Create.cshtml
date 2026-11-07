@@ -1,0 +1,9 @@
+@model HTMLActionDemo.Models.User
+@{ ViewData["Title"] = "Create User"; }
+<h1>Create User <small class="text-muted fs-6">(HTTP GET shows this form, HTTP POST submits it)</small></h1>
+<form asp-action="Create" method="post">
+    <partial name="_UserFields" model="Model" />
+    <button type="submit" class="btn btn-primary">Create (POST)</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

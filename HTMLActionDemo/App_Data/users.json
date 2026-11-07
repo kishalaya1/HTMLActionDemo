@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "FirstName": "Kishalaya",
+    "LastName": "Bhattacharjee",
+    "Email": "kishalaya1@yahoo.com",
+    "Phone": "911911911",
+    "DateOfBirth": "2006-11-07T00:00:00",
+    "City": "Lucknow",
+    "IsActive": true
+  },
+  {
+    "Id": 2,
+    "FirstName": "kaiser ",
+    "LastName": "Sozay",
+    "Email": "kk@kk.com",
+    "Phone": "911911911",
+    "DateOfBirth": "2006-11-02T00:00:00",
+    "City": "Xanadu",
+    "IsActive": true
+  }
+]
